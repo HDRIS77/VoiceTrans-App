@@ -256,7 +256,7 @@
 <body>
     <div class="container">
         <header>
-            <h1>VoiceTrans</h1>
+            <h1>VoiceTrans - مصرى</h1>
             <select id="language" class="language-selector">
                 <option value="en">ترجمة للإنجليزية</option>
                 <option value="ur">ترجمة للأردية (رومان)</option>
@@ -345,13 +345,18 @@
         let sessionHistory = [];
         let finalTranscript = '';
         
-        // Egyptian Arabic to English translation dictionary
+        // Enhanced Egyptian Arabic to English translation dictionary
         const arabicToEnglish = {
             "اهلا": "Hello",
+            "اهلا بيك": "Welcome",
             "ازيك": "How are you",
+            "الحمد لله": "Thank God",
             "شكرا": "Thank you",
+            "شكرا جزيلا": "Thank you very much",
             "اسمي": "My name is",
+            "انا اسمي": "My name is",
             "بحب": "I love",
+            "بحبك": "I love you",
             "مصري": "Egyptian",
             "اللغة": "language",
             "التطبيق": "app",
@@ -359,33 +364,177 @@
             "الميكروفون": "microphone",
             "الترجمة": "translation",
             "ايوه": "yes",
+            "اه": "yes",
             "لأ": "no",
+            "كلا": "no",
+            "مش": "not",
             "كويس": "good",
+            "تمام": "fine",
+            "حلو": "nice",
             "وحش": "bad",
+            "سيء": "bad",
             "صباح الفل": "Good morning",
+            "صباح الخير": "Good morning",
             "مساء الخير": "Good evening",
+            "مساء النور": "Good evening",
             "مع السلامة": "Goodbye",
+            "باي": "Bye",
             "لو سمحت": "Please",
+            "من فضلك": "Please",
             "انا": "I",
-            "انت": "you",
+            "انت": "you (m)",
+            "انتي": "you (f)",
             "هو": "he",
             "هي": "she",
             "احنا": "we",
             "فين": "where",
             "امتى": "when",
-            "عايز": "want",
-            "مش عايز": "don't want",
+            "عايز": "want (m)",
+            "عايزة": "want (f)",
+            "عاوز": "want (m)",
+            "عوزة": "want (f)",
+            "مش عايز": "don't want (m)",
+            "مش عايزة": "don't want (f)",
             "تمام": "okay",
-            "ماشي": "alright"
+            "ماشي": "alright",
+            "ايه": "what",
+            "ليه": "why",
+            "ازاي": "how",
+            "كام": "how much",
+            "مين": "who",
+            "عامل ايه": "how are you (m)",
+            "عاملة ايه": "how are you (f)",
+            "بخير": "I'm fine",
+            "تمام الحمد لله": "I'm fine, thank God",
+            "ممكن": "can",
+            "مش ممكن": "can't",
+            "هحاول": "I'll try",
+            "متشكر": "thanks (m)",
+            "متشكرة": "thanks (f)",
+            "عفوا": "you're welcome",
+            "اسف": "sorry (m)",
+            "اسفة": "sorry (f)",
+            "تمام جدا": "very good",
+            "تمام كده": "that's good",
+            "خلاص": "enough",
+            "يلا": "let's go",
+            "يلا بينا": "let's go",
+            "بسرعة": "quickly",
+            "على مهلك": "take your time",
+            "بعد اذنك": "excuse me",
+            "معلش": "never mind",
+            "بالظبط": "exactly",
+            "طبعا": "of course",
+            "اكيد": "sure",
+            "مش عارف": "I don't know (m)",
+            "مش عارفة": "I don't know (f)",
+            "فاهم": "I understand (m)",
+            "فاهمة": "I understand (f)",
+            "مش فاهم": "I don't understand (m)",
+            "مش فاهمة": "I don't understand (f)",
+            "اتكلم": "speak (m)",
+            "اتكلمي": "speak (f)",
+            "اسمع": "listen (m)",
+            "اسمعي": "listen (f)",
+            "شوف": "look (m)",
+            "شوفي": "look (f)",
+            "روح": "go (m)",
+            "روحي": "go (f)",
+            "تعال": "come (m)",
+            "تعالي": "come (f)",
+            "قف": "stop (m)",
+            "قفي": "stop (f)",
+            "استنى": "wait (m)",
+            "استني": "wait (f)",
+            "بس": "enough",
+            "خلاص": "that's it",
+            "تمام": "okay",
+            "حاضر": "got it",
+            "تمام جدا": "very good",
+            "ماشي": "alright",
+            "يلا": "let's go",
+            "بعدين": "later",
+            "النهاردة": "today",
+            "بكرة": "tomorrow",
+            "امس": "yesterday",
+            "دلوقتي": "now",
+            "بعد كده": "after that",
+            "قبل كده": "before that",
+            "بعد شوية": "after a while",
+            "بعد قليل": "after a while",
+            "شوية": "a little",
+            "كتير": "a lot",
+            "قليل": "a little",
+            "زي ما انت عايز": "as you wish",
+            "تمام كده": "that's good",
+            "مظبوط": "correct",
+            "غلط": "wrong",
+            "صح": "right",
+            "خطأ": "wrong",
+            "حقيقي": "really",
+            "جد": "seriously",
+            "بجد": "really",
+            "مش حقيقي": "not true",
+            "ممكن": "possible",
+            "مش ممكن": "not possible",
+            "هحاول": "I'll try",
+            "هنجرب": "we'll try",
+            "هنتكلم": "we'll talk",
+            "هنساعدك": "we'll help you",
+            "هنساعد": "we'll help",
+            "هتعمل ايه": "what will you do",
+            "هعمل ايه": "what should I do",
+            "هقولك": "I'll tell you",
+            "هقول": "I'll say",
+            "هسمع": "I'll listen",
+            "هشوف": "I'll see",
+            "هروح": "I'll go",
+            "هجرب": "I'll try",
+            "هحاول": "I'll try",
+            "هتعمل كده": "you'll do it",
+            "هعمل كده": "I'll do it",
+            "هنساعد بعض": "we'll help each other",
+            "هنتعلم": "we'll learn",
+            "هنتكلم": "we'll speak",
+            "هنتفاهم": "we'll understand",
+            "هنتعاون": "we'll cooperate",
+            "هنتعامل": "we'll deal",
+            "هنتقابل": "we'll meet",
+            "هنتصل": "we'll call",
+            "هنتكلم تاني": "we'll talk again",
+            "هنتقابل تاني": "we'll meet again",
+            "هنتصل تاني": "we'll call again",
+            "هنساعد تاني": "we'll help again",
+            "هنتعلم تاني": "we'll learn again",
+            "هنتكلم بكرة": "we'll talk tomorrow",
+            "هنتقابل بكرة": "we'll meet tomorrow",
+            "هنتصل بكرة": "we'll call tomorrow",
+            "هنساعد بكرة": "we'll help tomorrow",
+            "هنتعلم بكرة": "we'll learn tomorrow",
+            "هنتكلم بعدين": "we'll talk later",
+            "هنتقابل بعدين": "we'll meet later",
+            "هنتصل بعدين": "we'll call later",
+            "هنساعد بعدين": "we'll help later",
+            "هنتعلم بعدين": "we'll learn later",
+            "هنتكلم النهاردة": "we'll talk today",
+            "هنتقابل النهاردة": "we'll meet today",
+            "هنتصل النهاردة": "we'll call today",
+            "هنساعد النهاردة": "we'll help today",
+            "هنتعلم النهاردة": "we'll learn today"
         };
         
-        // Egyptian Arabic to Urdu (Roman) translation dictionary
+        // Enhanced Egyptian Arabic to Urdu (Roman) translation dictionary
         const arabicToUrdu = {
             "اهلا": "Salam",
+            "اهلا بيك": "Khush amdeed",
             "ازيك": "Aap kaise hain",
+            "الحمد لله": "Alhamdulillah",
             "شكرا": "Shukriya",
+            "شكرا جزيلا": "Bahut shukriya",
             "اسمي": "Mera naam hai",
-            "بحب": "Main pasand karta hoon",
+            "انا اسمي": "Mera naam hai",
+            "بحب": "Main pasand karta hoon (m)",
+            "بحبك": "Main tumse mohabbat karta hoon (m)",
             "مصري": "Misri",
             "اللغة": "Zubaan",
             "التطبيق": "App",
@@ -393,24 +542,163 @@
             "الميكروفون": "Microphone",
             "الترجمة": "Tarjuma",
             "ايوه": "Haan",
+            "اه": "Haan",
             "لأ": "Nahi",
+            "كلا": "Nahi",
+            "مش": "Nahi",
             "كويس": "Acha",
+            "تمام": "Theek",
+            "حلو": "Acha",
             "وحش": "Kharab",
+            "سيء": "Kharab",
             "صباح الفل": "Subha bakhair",
+            "صباح الخير": "Subha bakhair",
             "مساء الخير": "Shaam bakhair",
+            "مساء النور": "Shaam bakhair",
             "مع السلامة": "Khuda hafiz",
+            "باي": "Bye",
             "لو سمحت": "Meharbani se",
+            "من فضلك": "Barah-e-karam",
             "انا": "Main",
-            "انت": "Aap",
+            "انت": "Aap (m)",
+            "انتي": "Aap (f)",
             "هو": "Woh (m)",
             "هي": "Woh (f)",
             "احنا": "Hum",
             "فين": "Kahan",
             "امتى": "Kab",
-            "عايز": "Chahiye",
-            "مش عايز": "Nahi chahiye",
+            "عايز": "Chahiye (m)",
+            "عايزة": "Chahiye (f)",
+            "عاوز": "Chahiye (m)",
+            "عوزة": "Chahiye (f)",
+            "مش عايز": "Nahi chahiye (m)",
+            "مش عايزة": "Nahi chahiye (f)",
             "تمام": "Theek hai",
-            "ماشي": "Chalta hai"
+            "ماشي": "Chalta hai",
+            "ايه": "Kya",
+            "ليه": "Kyun",
+            "ازاي": "Kaise",
+            "كام": "Kitna",
+            "مين": "Kaun",
+            "عامل ايه": "Kaise ho (m)",
+            "عاملة ايه": "Kaise ho (f)",
+            "بخير": "Main theek hoon",
+            "تمام الحمد لله": "Theek hoon, shukar hai",
+            "ممكن": "Ho sakta hai",
+            "مش ممكن": "Nahi ho sakta",
+            "هحاول": "Main koshish karunga",
+            "متشكر": "Shukriya (m)",
+            "متشكرة": "Shukriya (f)",
+            "عفوا": "Koi baat nahi",
+            "اسف": "Maaf kijiye (m)",
+            "اسفة": "Maaf kijiye (f)",
+            "تمام جدا": "Bahut acha",
+            "تمام كده": "Theek hai",
+            "خلاص": "Bas",
+            "يلا": "Chalo",
+            "يلا بينا": "Chalo chalte hain",
+            "بسرعة": "Jaldi se",
+            "على مهلك": "Aram se",
+            "بعد اذنك": "Maaf kijiye",
+            "معلش": "Koi baat nahi",
+            "بالظبط": "Bilkul sahi",
+            "طبعا": "Bilkul",
+            "اكيد": "Yaqeenan",
+            "مش عارف": "Pata nahi (m)",
+            "مش عارفة": "Pata nahi (f)",
+            "فاهم": "Samajh gaya (m)",
+            "فاهمة": "Samajh gayi (f)",
+            "مش فاهم": "Nahi samajh (m)",
+            "مش فاهمة": "Nahi samajh (f)",
+            "اتكلم": "Boliye (m)",
+            "اتكلمي": "Boliye (f)",
+            "اسمع": "Sunie (m)",
+            "اسمعي": "Sunie (f)",
+            "شوف": "Dekhiye (m)",
+            "شوفي": "Dekhiye (f)",
+            "روح": "Jaiye (m)",
+            "روحي": "Jaiye (f)",
+            "تعال": "Aaiye (m)",
+            "تعالي": "Aaiye (f)",
+            "قف": "Rukiye (m)",
+            "قفي": "Rukiye (f)",
+            "استنى": "Intezar kijiye (m)",
+            "استني": "Intezar kijiye (f)",
+            "بس": "Bas",
+            "خلاص": "Khatam",
+            "تمام": "Theek hai",
+            "حاضر": "Samajh gaya",
+            "تمام جدا": "Bahut acha",
+            "ماشي": "Chalta hai",
+            "يلا": "Chalo",
+            "بعدين": "Baad mein",
+            "النها ردة": "Aaj",
+            "بكرة": "Kal",
+            "امس": "Kal",
+            "دلوقتي": "Abhi",
+            "بعد كده": "Uske baad",
+            "قبل كده": "Usse pehle",
+            "بعد شوية": "Thodi der baad",
+            "بعد قليل": "Thodi der baad",
+            "شوية": "Thoda sa",
+            "كتير": "Bahut",
+            "قليل": "Kam",
+            "زي ما انت عايز": "Jaisa aap chahe",
+            "تمام كده": "Theek hai",
+            "مظبوط": "Sahi",
+            "غلط": "Ghalat",
+            "صح": "Sahi",
+            "خطأ": "Ghalat",
+            "حقيقي": "Sach",
+            "جد": "Sach",
+            "بجد": "Sach",
+            "مش حقيقي": "Jhoot",
+            "ممكن": "Mumkin",
+            "مش ممكن": "Na mumkin",
+            "هحاول": "Main koshish karunga",
+            "هنجرب": "Hum koshish karenge",
+            "هنتكلم": "Hum baat karenge",
+            "هنساعدك": "Hum aapki madad karenge",
+            "هنساعد": "Hum madad karenge",
+            "هتعمل ايه": "Aap kya karenge",
+            "هعمل ايه": "Main kya karun",
+            "هقولك": "Main aapko bataunga",
+            "هقول": "Main kahunga",
+            "هسمع": "Main sununga",
+            "هشوف": "Main dekhoonga",
+            "هروح": "Main jaunga",
+            "هجرب": "Main koshish karunga",
+            "هحاول": "Main koshish karunga",
+            "هتعمل كده": "Aap aisa karenge",
+            "هعمل كده": "Main aisa karunga",
+            "هنساعد بعض": "Hum ek doosre ki madad karenge",
+            "هنتعلم": "Hum seekhenge",
+            "هنتكلم": "Hum baat karenge",
+            "هنتفاهم": "Hum samajhenge",
+            "هنتعاون": "Hum sahayog karenge",
+            "هنتعامل": "Hum vyavahar karenge",
+            "هنتقابل": "Hum milege",
+            "هنتصل": "Hum baat karenge",
+            "هنتكلم تاني": "Hum phir baat karenge",
+            "هنتقابل تاني": "Hum phir milege",
+            "هنتصل تاني": "Hum phir baat karenge",
+            "هنساعد تاني": "Hum phir madad karenge",
+            "هنتعلم تاني": "Hum phir seekhenge",
+            "هنتكلم بكرة": "Hum kal baat karenge",
+            "هنتقابل بكرة": "Hum kal milege",
+            "هنتصل بكرة": "Hum kal baat karenge",
+            "هنساعد بكرة": "Hum kal madad karenge",
+            "هنتعلم بكرة": "Hum kal seekhenge",
+            "هنتكلم بعدين": "Hum baad mein baat karenge",
+            "هنتقابل بعدين": "Hum baad mein milege",
+            "هنتصل بعدين": "Hum baad mein baat karenge",
+            "هنساعد بعدين": "Hum baad mein madad karenge",
+            "هنتعلم بعدين": "Hum baad mein seekhenge",
+            "هنتكلم النهاردة": "Hum aaj baat karenge",
+            "هنتقابل النهاردة": "Hum aaj milege",
+            "هنتصل النهاردة": "Hum aaj baat karenge",
+            "هنساعد النهاردة": "Hum aaj madad karenge",
+            "هنتعلم النهاردة": "Hum aaj seekhenge"
         };
         
         // Initialize speech recognition
@@ -427,6 +715,7 @@
             recognition.interimResults = true;
             recognition.continuous = true;
             recognition.lang = 'ar-EG'; // Egyptian Arabic
+            recognition.maxAlternatives = 3; // Get more recognition alternatives
             
             recognition.onstart = () => {
                 isRecording = true;
@@ -446,12 +735,29 @@
             
             recognition.onresult = (event) => {
                 let interimTranscript = '';
+                let finalTranscriptPart = '';
                 
                 for (let i = event.resultIndex; i < event.results.length; i++) {
-                    const transcript = event.results[i][0].transcript;
+                    const result = event.results[i];
                     
-                    if (event.results[i].isFinal) {
-                        finalTranscript += transcript + ' ';
+                    // Get the most confident alternative
+                    let transcript = result[0].transcript;
+                    
+                    // If we have alternatives, try to find the most accurate one
+                    if (result.length > 1) {
+                        // Check if any alternative matches our dictionary better
+                        for (let j = 0; j < result.length; j++) {
+                            const alt = result[j].transcript.trim().toLowerCase();
+                            if (arabicToEnglish[alt] || arabicToUrdu[alt]) {
+                                transcript = result[j].transcript;
+                                break;
+                            }
+                        }
+                    }
+                    
+                    if (result.isFinal) {
+                        finalTranscriptPart = transcript + ' ';
+                        finalTranscript += finalTranscriptPart;
                     } else {
                         interimTranscript += transcript;
                     }
@@ -461,9 +767,8 @@
                 originalText.textContent = finalTranscript + interimTranscript;
                 
                 // Only translate final results (not interim)
-                if (finalTranscript.trim()) {
-                    translateText(finalTranscript, translationLanguage);
-                    finalTranscript = ''; // Reset for next utterances
+                if (finalTranscriptPart.trim()) {
+                    translateText(finalTranscriptPart, translationLanguage);
                 }
             };
             
@@ -480,26 +785,38 @@
             };
         }
         
-        // Translate text using our dictionaries
+        // Enhanced translation function
         function translateText(text, targetLang) {
             if (!text.trim()) return;
             
             status.textContent = 'بيتم الترجمة دلوقتي...';
             
-            // Split into words and translate each word
-            const words = text.split(' ');
+            // Clean the text
+            const cleanedText = text.trim().toLowerCase();
             let translated = '';
             
             if (targetLang === 'ur') {
-                // Translate to Urdu (Roman)
-                for (const word of words) {
-                    translated += (arabicToUrdu[word] || word) + ' ';
+                // First check for exact matches
+                if (arabicToUrdu[cleanedText]) {
+                    translated = arabicToUrdu[cleanedText];
+                } else {
+                    // Split into words and translate each word
+                    const words = cleanedText.split(/\s+/);
+                    for (const word of words) {
+                        translated += (arabicToUrdu[word] || word) + ' ';
+                    }
                 }
                 translatedText.textContent = translated;
             } else {
-                // Translate to English
-                for (const word of words) {
-                    translated += (arabicToEnglish[word] || word) + ' ';
+                // First check for exact matches
+                if (arabicToEnglish[cleanedText]) {
+                    translated = arabicToEnglish[cleanedText];
+                } else {
+                    // Split into words and translate each word
+                    const words = cleanedText.split(/\s+/);
+                    for (const word of words) {
+                        translated += (arabicToEnglish[word] || word) + ' ';
+                    }
                 }
                 translatedText.textContent = translated;
             }
@@ -517,137 +834,10 @@
                 // Clear previous transcript when starting new recording
                 originalText.textContent = '';
                 translatedText.textContent = '';
+                finalTranscript = '';
                 
                 try {
                     recognition.start();
                     isRecording = true;
                     recordBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>';
                 } catch (error) {
-                    console.error('Error starting recognition:', error);
-                    status.textContent = 'حصلت مشكلة في تشغيل الميكروفون. جرب تفتح الصفحة من جديد.';
-                }
-            }
-        }
-        
-        // Clear text
-        function clearText() {
-            originalText.textContent = '';
-            translatedText.textContent = '';
-            finalTranscript = '';
-        }
-        
-        // Save session to history
-        function saveSession() {
-            if (!originalText.textContent.trim()) {
-                status.textContent = 'مفيش كلام للحفظ';
-                return;
-            }
-            
-            const session = {
-                id: Date.now(),
-                date: new Date().toLocaleString(),
-                original: originalText.textContent,
-                translated: translatedText.textContent,
-                language: translationLanguage
-            };
-            
-            sessionHistory.unshift(session);
-            saveToLocalStorage();
-            renderHistory();
-            status.textContent = 'تم حفظ الكلام';
-        }
-        
-        // Save to localStorage
-        function saveToLocalStorage() {
-            localStorage.setItem('voiceTransHistory', JSON.stringify(sessionHistory));
-        }
-        
-        // Load from localStorage
-        function loadFromLocalStorage() {
-            const history = localStorage.getItem('voiceTransHistory');
-            if (history) {
-                sessionHistory = JSON.parse(history);
-                renderHistory();
-            }
-        }
-        
-        // Render history list
-        function renderHistory() {
-            historyList.innerHTML = '';
-            
-            if (sessionHistory.length === 0) {
-                historyList.innerHTML = '<div class="history-item">مفيش كلام محفوظ لسه</div>';
-                return;
-            }
-            
-            sessionHistory.forEach(session => {
-                const item = document.createElement('div');
-                item.className = 'history-item';
-                item.innerHTML = `
-                    <div class="history-item-date">${session.date}</div>
-                    <div class="history-item-content">
-                        <strong>الأصلي:</strong> ${session.original.substring(0, 100)}${session.original.length > 100 ? '...' : ''}
-                    </div>
-                `;
-                
-                item.addEventListener('click', () => {
-                    originalText.textContent = session.original;
-                    translatedText.textContent = session.translated;
-                });
-                
-                historyList.appendChild(item);
-            });
-        }
-        
-        // Copy text to clipboard
-        function copyToClipboard(text, button) {
-            if (!text.trim()) return;
-            
-            navigator.clipboard.writeText(text).then(() => {
-                button.classList.add('copied');
-                button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
-                setTimeout(() => {
-                    button.classList.remove('copied');
-                    button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
-                }, 2000);
-            });
-        }
-        
-        // Event Listeners
-        recordBtn.addEventListener('click', toggleRecording);
-        clearBtn.addEventListener('click', clearText);
-        saveBtn.addEventListener('click', saveSession);
-        
-        languageSelector.addEventListener('change', (e) => {
-            translationLanguage = e.target.value;
-            const languageName = e.target.options[e.target.selectedIndex].text.replace('ترجمة ل', '');
-            targetLanguageLabel.textContent = `الترجمة (${languageName})`;
-            
-            // Retranslate current text if there is any
-            if (originalText.textContent.trim()) {
-                translateText(originalText.textContent, translationLanguage);
-            }
-        });
-        
-        copyOriginal.addEventListener('click', () => {
-            copyToClipboard(originalText.textContent, copyOriginal);
-        });
-        
-        copyTranslated.addEventListener('click', () => {
-            copyToClipboard(translatedText.textContent, copyTranslated);
-        });
-        
-        // Initialize app
-        document.addEventListener('DOMContentLoaded', () => {
-            initSpeechRecognition();
-            loadFromLocalStorage();
-            
-            // Add instructions for first-time users
-            if (!localStorage.getItem('voiceTransFirstRun')) {
-                status.textContent = 'اضغط على زر الميكروفون واسمح بالوصول عشان تبدأ التسجيل';
-                localStorage.setItem('voiceTransFirstRun', 'true');
-            }
-        });
-    </script>
-</body>
-</html>
